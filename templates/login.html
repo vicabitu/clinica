@@ -39,6 +39,13 @@
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                    {% if messages %}
+                      <ul>
+                        {% for message in messages %}
+                          <li>{{ message }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
                   </div>
                   <form method="post" action="{% url 'user_login' %}" class="user">
                     {% csrf_token %}
@@ -54,10 +61,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                      Ingresar
-                    </a>
-                    <input type="submit" name="" value="Login">
+                    <input type="submit" name="" value="Ingresar" class="btn btn-primary btn-user btn-block">
                     <hr>
                   </form>
                   <div class="text-center">
