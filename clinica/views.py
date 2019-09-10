@@ -1,26 +1,29 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login
-from django.urls import reverse
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/')
 def index(request):
     return render(request, 'index.html')
 
 def mostrar_login(request):
     return render(request, 'login.html')
 
-def user_login(request):
-    print('Hola')
+def user_logout(request):
+    logout(request)
+    return redirect('/')
 
+def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('email')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # return HttpResponse("Login")
-            return HttpResponseRedirect(reverse('index'))
+            return redirect('/index')
         else:
-            return HttpResponse("No Login")
+            messages.error(request, "El usuario o la contraseña son incorrectos.")
+            return redirect('/')
     else:
-        pass
+        return redirect('/')
