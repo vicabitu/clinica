@@ -27,3 +27,6 @@ def user_login(request):
             return redirect('/')
     else:
         return redirect('/')
+
+def crear_cuenta(request):
+    return render(request, 'register.html')
