@@ -23,5 +23,5 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('user_login', views.user_login, name='user_login'),
     path('logout', views.user_logout, name='logout'),
-    path('crear_cuenta', views.crear_cuenta, name='crear_cuenta')
+    path('crear_cuenta', views.CrearCuentaMedico.as_view(), name='crear_cuenta')
 ]

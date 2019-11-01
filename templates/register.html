@@ -35,36 +35,37 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Crear una cuenta</h1>
               </div>
-              <form class="user">
+              <form method="POST" class="user">
+                {% csrf_token %}
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                    {{ form.first_name }}
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                    {{ form.last_name }}
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                  {{ form.username }}
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                    {{ form.password1 }}
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                    {{ form.password2 }}
                   </div>
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                  Register Account
-                </a>
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                    Crear cuenta
+                </button>
               </form>
               <hr>
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <a class="small" href="forgot-password.html">Forgot Password?</a>
-              </div>
+              </div> -->
               <div class="text-center">
-                <a class="small" href="{% url 'mostrar_login' %}">Already have an account? Login!</a>
+                <a class="small" href="{% url 'mostrar_login' %}">¿Ya tenes una cuenta? Ingresá!</a>
               </div>
             </div>
           </div>

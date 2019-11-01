@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView
+from administracion.models import Medico, Paciente
+from .forms import FormularioMedico
+from django.contrib.auth import login
 
 @login_required(login_url='/')
 def index(request):
@@ -28,5 +32,13 @@ def user_login(request):
     else:
         return redirect('/')
 
-def crear_cuenta(request):
-    return render(request, 'register.html')
+class CrearCuentaMedico(CreateView):
+    model = Medico
+    form_class = FormularioMedico
+    template_name = 'register.html'
+    success_url = '/index'
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/index')
