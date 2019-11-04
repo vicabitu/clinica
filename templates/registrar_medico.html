@@ -56,14 +56,18 @@
                     {{ form.password2 }}
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-user btn-block">
+                <p>
+                    Leer atentamente los 
+                    <a target="_blank" href="https://drive.google.com/open?id=1xMCNeuWDgh2JNDzQh10K1D7pxY-9rbUU">
+                        términos y condiciones.
+                    </a>
+                </p>
+                <p><input id="check" type="checkbox" name="terminos" value="terminos" onclick="cambiarChecked()"> Acepto los términos y condiciones</p>
+                <button disabled="true" id="button-submit" type="submit" class="btn btn-primary btn-user btn-block">
                     Crear cuenta
                 </button>
               </form>
               <hr>
-              <!-- <div class="text-center">
-                <a class="small" href="forgot-password.html">Forgot Password?</a>
-              </div> -->
               <div class="text-center">
                 <a class="small" href="{% url 'mostrar_login' %}">¿Ya tenes una cuenta? Ingresá!</a>
               </div>
@@ -84,6 +88,18 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+  <script>
+      function cambiarChecked() {
+          var checked = document.getElementById("check").checked;
+
+          if (checked) {
+            document.getElementById("button-submit").disabled = false;
+          } else {
+            document.getElementById("button-submit").disabled = true;
+          }
+      }
+  </script>
 
 </body>
 
