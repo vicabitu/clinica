@@ -23,5 +23,7 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('user_login', views.user_login, name='user_login'),
     path('logout', views.user_logout, name='logout'),
-    path('crear_cuenta', views.CrearCuentaMedico.as_view(), name='crear_cuenta')
+    path('crear_cuenta_medico', views.CrearCuentaMedico.as_view(), name='crear_cuenta_medico'),
+    path('crear_cuenta_paciente', views.CrearCuentaPaciente.as_view(), name='crear_cuenta_paciente'),
+    path('elegir_tipo_de_cuenta', views.elegir_tipo_de_cuenta, name='elegir_tipo_de_cuenta')
 ]
