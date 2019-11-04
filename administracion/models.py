@@ -7,14 +7,11 @@ class Usuario(AbstractUser):
 
 class Medico(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, blank=True, null=True)
-    nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     especialidad = models.CharField(max_length=30)
 
 class Paciente(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, blank=True, null=True)
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
     direccion = models.CharField(max_length=30)
     telefono = models.CharField(max_length=30)
-    fecha_de_nacimiento = models.DateField()
+    fecha_de_nacimiento = models.DateField(blank=True, null=True)
