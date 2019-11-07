@@ -39,20 +39,18 @@ class CrearCuentaMedico(CreateView):
     model = Medico
     form_class = FormularioMedico
     template_name = 'registrar_medico.html'
-    success_url = '/index'
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/index')
+        return redirect(user.get_view_name())
 
 class CrearCuentaPaciente(CreateView):
     model = Paciente
     form_class = FormularioPaciente
     template_name = 'registrar_paciente.html'
-    success_url = '/index'
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/index')
+        return redirect(user.get_view_name())
