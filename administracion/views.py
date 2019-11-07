@@ -28,3 +28,11 @@ class DetalleHistoriaMedica(DetailView):
     model = HistoriaMedica
     template_name = 'medico/detalle_historia_medica.html'
     context_object_name = 'historia'
+
+class ListarHistoriasClinicasPaciente(ListView):
+    model = HistoriaMedica
+    template_name = 'paciente/historias_medicas.html'
+    context_object_name = 'historias_medicas'
+
+    def get_queryset(self):
+        return HistoriaMedica.objects.filter(paciente=self.request.user.paciente)
