@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View, CreateView, ListView, DetailView, TemplateView, FormView
-from .models import HistoriaMedica, Paciente
+from .models import HistoriaMedica, Paciente, DetalleHistoriaMedica
 
 def mostrar_index_medico(request):
     return render(request, 'medico/medico.html')
@@ -24,10 +24,16 @@ class ListarPacientes(ListView):
     def get_queryset(self):
         return Paciente.objects.filter(historias_medicas__medico=self.request.user.medico)
 
-class DetalleHistoriaMedica(DetailView):
-    model = HistoriaMedica
-    template_name = 'medico/detalle_historia_medica.html'
-    context_object_name = 'historia'
+class ListadoDetalleHistoriaMedicaPaciente(ListView):
+    model = DetalleHistoriaMedica
+    template_name = 'paciente/detalle_historia_medica.html'
+    context_object_name = 'detalles'
+
+    def get_queryset(self, **kwargs):
+        pk = self.kwargs['pk']
+        historia_medica = HistoriaMedica.objects.get(pk=pk)
+        print(DetalleHistoriaMedica.objects.filter(historia_medica=historia_medica))
+        return historia_medica.detalles.all()
 
 class ListarHistoriasClinicasPaciente(ListView):
     model = HistoriaMedica

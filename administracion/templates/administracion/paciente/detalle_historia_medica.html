@@ -15,25 +15,23 @@
       <!-- DataTales Example -->
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Historias Medicas</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Detalles de Historias Medicas</h6>
         </div>
         <div class="card-body">
           <div class="table-responsive">
+          {% if detalles %}
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Medico</th>
-                  <th>Especialidad</th>
-                  <th>Ver detalle</th>
+                  <th>Fecha</th>  
+                  <th>Observaciones</th>
                 </tr>
               </thead>
               <tbody>
-                {% if historias_medicas %}
-                  {% for historia_medica in historias_medicas %}
+                  {% for detalle in detalles %}
                     <tr>
-                      <td>{{ historia_medica.medico.usuario.first_name }} {{ historia_medica.medico.usuario.last_name }}</td>
-                      <td>{{ historia_medica.medico.especialidad|default:"" }}</td>
-                      <td><a href="{% url 'detalle_historia_medica' historia_medica.pk %}"> Ver detalle </a></td>
+                      <td>{{detalle.fecha}}</td>
+                      <td>{{detalle.observaciones }}</td>
                     </tr>
                   {% endfor %}
                 {% else %}
