@@ -32,7 +32,16 @@ class ListadoDetalleHistoriaMedicaPaciente(ListView):
     def get_queryset(self, **kwargs):
         pk = self.kwargs['pk']
         historia_medica = HistoriaMedica.objects.get(pk=pk)
-        print(DetalleHistoriaMedica.objects.filter(historia_medica=historia_medica))
+        return historia_medica.detalles.all()
+
+class ListadoDetalleHistoriaMedicaMedico(ListView):
+    model = DetalleHistoriaMedica
+    template_name = 'medico/detalle_historia_medica.html'
+    context_object_name = 'detalles'
+
+    def get_queryset(self, **kwargs):
+        pk = self.kwargs['pk']
+        historia_medica = HistoriaMedica.objects.get(pk=pk)
         return historia_medica.detalles.all()
 
 class ListarHistoriasClinicasPaciente(ListView):

@@ -36,11 +36,11 @@
                       <td>{{ historia_medica.paciente.usuario.first_name }} {{ historia_medica.paciente.usuario.last_name }}</td>
                       <td>{{ historia_medica.paciente.dni|default:"" }}</td>
                       <td>{{ historia_medica.paciente.obra_social|default:"" }}</td>
-                      <td><a href="{% url 'detalle_historia_medica' historia_medica.pk %}"> Ver detalle </a></td>
+                      <td><a href="{% url 'detalle_historia_medica_medico' historia_medica.pk %}"> Ver detalle </a></td>
                     </tr>
                   {% endfor %}
                 {% else %}
-                  <h1>No hay Checklist registrados</h1>
+                  <h1>No hay elementos registrados</h1>
                 {% endif %}
               </tbody>
             </table>

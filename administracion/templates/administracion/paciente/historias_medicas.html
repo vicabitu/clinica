@@ -33,7 +33,7 @@
                     <tr>
                       <td>{{ historia_medica.medico.usuario.first_name }} {{ historia_medica.medico.usuario.last_name }}</td>
                       <td>{{ historia_medica.medico.especialidad|default:"" }}</td>
-                      <td><a href="{% url 'detalle_historia_medica' historia_medica.pk %}"> Ver detalle </a></td>
+                      <td><a href="{% url 'detalle_historia_medica_paciente' historia_medica.pk %}"> Ver detalle </a></td>
                     </tr>
                   {% endfor %}
                 {% else %}
