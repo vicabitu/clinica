@@ -1,0 +1,74 @@
+{% extends 'medico/medico.html' %}
+{% load staticfiles %}
+
+{% block links %}
+  {{ block.super }}
+  <!-- Custom styles for this page -->
+  <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contenido %}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Begin Page Content -->
+
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Pacientes</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Dni</th>
+                  <th>Direccion</th>
+                  <th>Fecha de nacimiento</th>
+                  <th>Edad</th>
+                  <th>Obra social</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if pacientes %}
+                  {% for paciente in pacientes %}
+                    <tr>
+                      <td>{{ paciente.usuario.first_name }}</td>
+                      <td>{{ paciente.usuario.last_name }}</td>
+                      <td>{{ paciente.dni|default:"" }}</td>
+                      <td>{{ paciente.direccion }}</td>
+                      <td>{{ paciente.fecha_de_nacimiento|default:"" }}</td>
+                      <td>{{ paciente.edad|default:"" }}</td>
+                      <td>{{ paciente.obra_social|default:"" }}</td>
+                    </tr>
+                  {% endfor %}
+                {% else %}
+                  <h1>No hay historias medicas registradas</h1>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <!-- /.container-fluid -->
+
+
+  
+{% endblock %}
+
+{% block estaticos %}
+  {{ block.super }}
+  <!-- Page level plugins -->
+  <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+
+{% endblock %}
