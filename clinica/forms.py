@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from administracion.models import Usuario, Medico, Paciente
 from django.db import transaction
-from django.forms import ModelForm
 
 class FormularioMedico(UserCreationForm):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'Contraseña'}))

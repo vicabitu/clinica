@@ -9,4 +9,6 @@ urlpatterns = [
     path('detalle_historia_medica_paciente/<int:pk>', views.ListadoDetalleHistoriaMedicaPaciente.as_view(), name='detalle_historia_medica_paciente'),
     path('historias_medicas_paciente', views.ListarHistoriasClinicasPaciente.as_view(), name='historias_medicas_paciente'),
     path('detalle_historia_medica_medico/<int:pk>', views.ListadoDetalleHistoriaMedicaMedico.as_view(), name='detalle_historia_medica_medico'),
+    path('editar_paciente/<int:pk>', views.EditarPaciente.as_view(), name='editar_paciente'),
+    path('editar_medico/<int:pk>', views.EditarMedico.as_view(), name='editar_medico')
 ]
