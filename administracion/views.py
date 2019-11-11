@@ -2,10 +2,13 @@ from django.shortcuts import render
 from django.views.generic import View, CreateView, ListView, DetailView, TemplateView, FormView, UpdateView
 from .models import HistoriaMedica, Paciente, Medico, DetalleHistoriaMedica
 from .forms import FormularioEditarPaciente, FormularioEditarMedico
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/')
 def mostrar_index_medico(request):
     return render(request, 'medico/medico.html')
 
+@login_required(login_url='/')
 def mostrar_index_paciente(request):
     return render(request, 'paciente/paciente.html')
 
